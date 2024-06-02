@@ -1,0 +1,6 @@
+@import '../ax-styles/ax-variables.scss';
+@import '../ax-styles/ax-mixins.scss';
+
+mat-error {
+  @include mat-error($mat-error-font-size);
+}

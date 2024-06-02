@@ -1,0 +1,62 @@
+<div class="form-container">
+  <div class="title">Students Database</div>
+
+  <div class="form">
+    <div class="form-title">Enter Student Details</div>
+
+    <form [formGroup]="formGroup" autocomplete="off">
+      <div class="input-container">
+        <!-- Student Id Field -->
+        <div>
+          <ax-input
+            [inputConfig]="studentIdInputConfig"
+            [control]="formGroup.controls.studentID"
+          >
+          </ax-input>
+        </div>
+
+        <!-- Student Name Field -->
+        <div>
+          <ax-input
+            [inputConfig]="studentNameInputConfig"
+            [control]="formGroup.controls.studentName"
+          >
+          </ax-input>
+        </div>
+
+        <!-- Student Gender Field -->
+        <div>
+          <ax-select
+            [selectConfig]="genderSelectConfig"
+            [control]="formGroup.controls.studentGender"
+          >
+          </ax-select>
+        </div>
+
+        <!-- Student Phone Number Field -->
+        <div>
+          <ax-input
+            [inputConfig]="studentPhoneNumberInputConfig"
+            [control]="formGroup.controls.studentPhoneNumber"
+          >
+          </ax-input>
+        </div>
+
+        <div class="button-container">
+          <ax-button
+            [buttonConfig]="submitButtonConfig"
+            (event)="onSubmit()"
+          ></ax-button>
+          <ax-button [buttonConfig]="cancelButtonConfig" (event)="onCancel()">
+          </ax-button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <ng-container *ngIf="alertMessage">
+    <ax-popup [popupConfig]="popupConfig" (event)="removePopup()"></ax-popup>
+  </ng-container>
+</div>
+
+<ax-snackbar></ax-snackbar>

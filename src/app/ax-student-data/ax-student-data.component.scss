@@ -1,0 +1,113 @@
+@import "../ax-styles/ax-variables.scss";
+@import "../ax-styles/ax-mixins.scss";
+
+div.table-container {
+  margin-top: 10px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1100px;
+  @include flex-box($flex-direction: column, $gap: 0px, $align-items: none);
+  background-color: $table-background-color;
+  box-shadow: $table-box-shadow;
+
+  div.title {
+    align-self: center;
+    display: block;
+    padding-top: 15px;
+    @include text($font-weight: 570);
+  }
+
+  div.table {
+    form {
+      width: 100%;
+      @include flex-box($flex-direction: column, $align-items: center);
+
+      table {
+        width: 100%;
+
+        th {
+          @include text($font-weight: 570);
+        }
+
+        th,
+        td {
+          width: 200px;
+          text-align: center;
+        }
+
+        td {
+          height: 80px;
+
+          .input-container {
+            width: 150px;
+          }
+
+          ax-input {
+            @include mat-input(
+              $margin-left: 30px,
+              $margin-top: 20px,
+              $width: 60%,
+              $height: 42px,
+              $padding-top-infix: 14px,
+              $padding-bottom-infix: 10px,
+              $margin-left-error: -20px
+            );
+          }
+
+          ax-select {
+            @include mat-select(
+              $margin-left: 30px,
+              $margin-top: 20px,
+              $width: 60%,
+              $height: 42px,
+              $padding-top-infix: 10px,
+              $padding-bottom-infix: 10px,
+              $margin-left-error: -20px
+            );
+          }
+
+          ax-button {
+            button {
+              height: 200px;
+              width: 70px;
+            }
+          }
+        }
+
+        td:last-child {
+          div {
+            @include flex-box(
+              $gap: 15px,
+              $justify-content: center,
+              $align-items: center
+            );
+          }
+        }
+      }
+    }
+  }
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+div.card-container {
+  margin-top: 10px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1100px;
+  @include flex-box($flex-direction: column, $gap: 0px, $align-items: none);
+
+  mat-card {
+    width: 100%;
+    box-shadow: $table-box-shadow;
+    text-align: center;
+  }
+}

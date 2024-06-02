@@ -1,0 +1,8 @@
+@import "../ax-styles/ax-mixins.scss";
+@import "../ax-styles/ax-variables.scss";
+
+@include mat-button(
+  $background-color: $background-color-button,
+  $text-color: $text-color-button,
+  $hover-color: $hover-color-button
+);

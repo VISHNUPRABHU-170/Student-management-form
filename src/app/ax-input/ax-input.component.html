@@ -1,0 +1,16 @@
+<ng-container *ngIf="inputConfig">
+  <mat-form-field appearance="outline">
+    <mat-label *ngIf="inputConfig.label">{{ inputConfig.label }}</mat-label>
+
+    <input
+      *ngIf="control"
+      matInput
+      [type]="inputConfig.type"
+      [formControl]="control"
+    />
+
+    <mat-error *ngIf="control.errors">
+      {{ error }}
+    </mat-error>
+  </mat-form-field>
+</ng-container>

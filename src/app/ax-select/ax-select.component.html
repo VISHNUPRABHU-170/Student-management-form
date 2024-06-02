@@ -1,0 +1,15 @@
+<ng-container *ngIf="selectConfig">
+    <mat-form-field appearance="outline">
+        <mat-label *ngIf="selectConfig.label">{{selectConfig.label}}</mat-label>
+
+        <mat-select *ngIf="control" [formControl]="control">
+            <ng-container *ngFor="let option of selectConfig.options; let value of selectConfig.values">
+                <mat-option [value]="value">{{option}} </mat-option>
+            </ng-container>
+        </mat-select>
+
+        <mat-error *ngIf="control.errors || control.invalid">
+            {{error}}
+        </mat-error>
+    </mat-form-field>
+</ng-container>

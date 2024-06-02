@@ -1,0 +1,164 @@
+<ng-container *ngIf="dataSource.length">
+  <div class="table-container">
+    <div class="title">
+      <div>Students Data</div>
+    </div>
+
+    <div class="table">
+      <mat-progress-bar mode="indeterminate" *ngIf="progressDisplay">
+      </mat-progress-bar>
+
+      <form *ngIf="!progressDisplay">
+        <table mat-table [dataSource]="dataTable" matSort>
+          <!-- Student ID Column -->
+          <ng-container matColumnDef="studentID">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <div class="mat-head">Student ID</div>
+            </th>
+            <td mat-cell *matCellDef="let element; let i = index">
+              <ng-container *ngIf="!element.edit; else show">
+                <span>{{ element.studentID }}</span>
+              </ng-container>
+              <ng-template #show>
+                <div class="input-container">
+                  <ax-input
+                    [inputConfig]="studentIdInputConfig"
+                    [control]="
+                      formGroup[indexFinder(element.studentID)].controls[
+                        'studentID'
+                      ]
+                    "
+                  >
+                  </ax-input>
+                </div>
+              </ng-template>
+            </td>
+          </ng-container>
+
+          <!-- Student Name Column -->
+          <ng-container matColumnDef="studentName">
+            <th mat-header-cell *matHeaderCellDef>Student Name</th>
+            <td mat-cell *matCellDef="let element; let i = index">
+              <ng-container *ngIf="!element.edit; else show">
+                <span>{{ element.studentName }}</span>
+              </ng-container>
+              <ng-template #show>
+                <div class="input-container">
+                  <ax-input
+                    [inputConfig]="studentNameInputConfig"
+                    [control]="
+                      formGroup[indexFinder(element.studentID)].controls[
+                        'studentName'
+                      ]
+                    "
+                  >
+                  </ax-input>
+                </div>
+              </ng-template>
+            </td>
+          </ng-container>
+
+          <!-- Student Gender Column -->
+          <ng-container matColumnDef="studentGender">
+            <th mat-header-cell *matHeaderCellDef>Student Gender</th>
+            <td mat-cell *matCellDef="let element; let i = index">
+              <ng-container *ngIf="!element.edit; else show">
+                <span>{{ element.studentGender }}</span>
+              </ng-container>
+              <ng-template #show>
+                <div class="input-container">
+                  <ax-select
+                    [selectConfig]="genderSelectConfig"
+                    [control]="
+                      formGroup[indexFinder(element.studentID)].controls[
+                        'studentGender'
+                      ]
+                    "
+                  >
+                  </ax-select>
+                </div>
+              </ng-template>
+            </td>
+          </ng-container>
+
+          <!-- Student PhoneNumber Column -->
+          <ng-container matColumnDef="studentPhoneNumber">
+            <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+            <td mat-cell *matCellDef="let element; let i = index">
+              <ng-container *ngIf="!element.edit; else show">
+                <span>{{ element.studentPhoneNumber }}</span>
+              </ng-container>
+              <ng-template #show>
+                <div class="input-container">
+                  <ax-input
+                    [inputConfig]="studentPhoneNumberInputConfig"
+                    [control]="
+                      formGroup[indexFinder(element.studentID)].controls[
+                        'studentPhoneNumber'
+                      ]
+                    "
+                  >
+                  </ax-input>
+                </div>
+              </ng-template>
+            </td>
+          </ng-container>
+
+          <!-- Action Buttons -->
+          <ng-container matColumnDef="actionButtons">
+            <th mat-header-cell *matHeaderCellDef>Action</th>
+            <td mat-cell *matCellDef="let element; let i = index">
+              <div>
+                <ax-button
+                  [buttonConfig]="editButtonConfig"
+                  (event)="onEdit(element.studentID)"
+                  [ngClass]="[element.edit ? 'hide' : 'show']"
+                >
+                </ax-button>
+
+                <ax-button
+                  [buttonConfig]="submitButtonConfig"
+                  (event)="onSubmit(element.studentID)"
+                  [ngClass]="[element.edit ? 'show' : 'hide']"
+                ></ax-button>
+
+                <ax-button
+                  [buttonConfig]="deleteButtonConfig"
+                  (event)="onDelete(element.studentID)"
+                ></ax-button>
+
+                <ax-button
+                  [buttonConfig]="cancelButtonConfig"
+                  (event)="onCancel(element.studentID)"
+                ></ax-button>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements"
+        >
+        </mat-paginator>
+      </form>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="alertMessage">
+  <ax-popup [popupConfig]="popupConfig" (event)="removePopup()"></ax-popup>
+</ng-container>
+
+<ax-snackbar></ax-snackbar>
+
+<ng-container *ngIf="!dataSource.length">
+  <div class="card-container">
+    <mat-card>
+      <mat-card-content>No Data Found</mat-card-content>
+    </mat-card>
+  </div>
+</ng-container>

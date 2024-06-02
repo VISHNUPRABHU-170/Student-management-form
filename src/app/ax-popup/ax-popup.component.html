@@ -1,0 +1,16 @@
+<ng-container *ngIf="popupConfig">
+
+  <div class="popup-overlay">
+
+    <div class="popup-container">
+
+      <div class="popup-title">{{ popupConfig.title }}</div>
+
+      <div class="popup-content">{{ popupConfig.message }}</div>
+
+      <ax-button [buttonConfig]="popupConfig.buttonConfig" (event)="onClose()"></ax-button>
+
+    </div>
+  </div>
+  
+</ng-container>

@@ -1,0 +1,55 @@
+<ng-container *ngIf="buttonConfig">
+  <ng-container *ngIf="buttonConfig.buttonType === ButtonType.BASIC">
+    <button
+      mat-button
+      [color]="buttonConfig.color"
+      [class]="buttonConfig.className"
+      [disabled]="buttonConfig.isDisabled"
+      [type]="buttonConfig.type"
+      (click)="onClick()">
+      {{ buttonConfig.text }}
+    </button>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="buttonConfig">
+  <ng-container *ngIf="buttonConfig.buttonType === ButtonType.RAISED">
+    <button
+      mat-raised-button
+      [color]="buttonConfig.color"
+      [class]="buttonConfig.className"
+      [disabled]="buttonConfig.isDisabled"
+      [type]="buttonConfig.type"
+      (click)="onClick()">
+      {{ buttonConfig.text }}
+    </button>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="buttonConfig">
+  <ng-container *ngIf="buttonConfig.buttonType === ButtonType.STROKED">
+    <button
+      mat-stroked-button
+      [color]="buttonConfig.color"
+      [class]="buttonConfig.className"
+      [disabled]="buttonConfig.isDisabled"
+      [type]="buttonConfig.type"
+      (click)="onClick()">
+      {{ buttonConfig.text }}
+    </button>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="buttonConfig">
+  <ng-container *ngIf="buttonConfig.buttonType === ButtonType.FLAT">
+    <button
+      mat-flat-button
+      [color]="buttonConfig.color"
+      [class]="buttonConfig.className"
+      [disabled]="buttonConfig.isDisabled"
+      [type]="buttonConfig.type"
+      (click)="onClick()">
+      {{ buttonConfig.text }}
+    </button>
+  </ng-container>
+</ng-container>
